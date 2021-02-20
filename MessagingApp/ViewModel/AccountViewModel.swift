@@ -70,6 +70,7 @@ class AccountViewModel {
     func authenticateUser(with username: String, password: String, completion: @escaping (String?) -> ()) {
         database.child("users").observeSingleEvent(of: .value) { snapshot in
             guard let value = snapshot.value as? [String: Any] else {
+                completion(nil)
                 return
             }
             
